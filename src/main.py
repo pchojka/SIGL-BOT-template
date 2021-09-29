@@ -2,9 +2,8 @@ import os
 from discord.ext import commands
 from dotenv import load_dotenv
 import discord
-import count
 
-import name, admin, mute
+import name, admin, mute, count, xkcd
 
 load_dotenv()
 
@@ -36,6 +35,7 @@ async def pong(ctx: commands.Context):
 bot.add_command(name)
 bot.add_command(admin)
 bot.add_command(mute)
+bot.add_command(xkcd)
 
 token = os.environ.get('TOKEN')
 if not token :

@@ -15,6 +15,12 @@ async def on_ready():  # When the bot is ready
     print("I'm in")
     print(bot.user)  # Prints the bot's username and identifier
 
+@bot.event
+async def on_message(message):  # When the bot is ready
+    if message.content == "!name" :
+        response = message.author
+        await message.channel.send(response)
+
 @bot.command()
 async def pong(ctx):
     await ctx.send('pong')

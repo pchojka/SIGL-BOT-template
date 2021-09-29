@@ -2,7 +2,7 @@ import os
 from discord.ext import commands
 from dotenv import load_dotenv
 
-import name
+import name, admin
 
 load_dotenv()
 
@@ -21,6 +21,7 @@ async def pong(ctx: commands.Context):
     await ctx.send('pong')
 
 bot.add_command(name)
+bot.add_command(admin)
 
 token = os.environ.get('TOKEN')
 if not token :

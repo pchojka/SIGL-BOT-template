@@ -1,13 +1,23 @@
 import os
 from discord.ext import commands
 from dotenv import load_dotenv
+import discord
+import count
 
 load_dotenv()
 
+intents = discord.Intents.default()
+intents.members = True
+intents.presences = True
+
+
 bot = commands.Bot(
     command_prefix="!",  # Change to desired prefix
-    case_insensitive=True  # Commands aren't case-sensitive
+    case_insensitive=True,  # Commands aren't case-sensitive
+    intents=intents
 )
+
+bot.add_command(count)
 
 @bot.event
 async def on_ready():  # When the bot is ready
@@ -17,12 +27,11 @@ async def on_ready():  # When the bot is ready
 @bot.command()
 async def pong(ctx):
     await ctx.send('pong')
+    print('pong')
 
-<<<<<<< HEAD
-token = "ODkyODIyMTE3Mjk1NDc2ODA2.YVSfZA.y5O1OtlVl0Bd3SKCR2D8V7EVb2E"
-=======
+
+
 token = os.environ.get('TOKEN')
 if not token :
     raise Exception('No Token')
->>>>>>> 537aee5ae65c7fcdc4d304afd66cc373021c7778
 bot.run(token)  # Starts the bot

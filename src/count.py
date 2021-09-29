@@ -5,7 +5,7 @@ import sys
 
 
 
-
+# Add all members of the servers into lists according to theirs status then display them in the channel wher the command was issued
 @commands.command()
 async def count(ctx: commands.Context):
     online = []
